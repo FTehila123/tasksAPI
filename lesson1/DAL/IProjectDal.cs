@@ -9,6 +9,7 @@ namespace lesson1.DAL
         public void Delete(int id);
         public Projects GetById(int id);
         public void Update(Projects project);
+        //public bool ProcessTransaction(Task task,Projects project);
 
     }
 }

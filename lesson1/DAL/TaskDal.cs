@@ -5,6 +5,7 @@ using System.Text.Json;
 using static System.Reflection.Metadata.BlobBuilder;
 using System;
 using lesson3.Models;
+using TasksApi.Services.Logger;
 
 
 namespace lesson1.DAL
@@ -13,10 +14,12 @@ namespace lesson1.DAL
     {
 
         private readonly TasksDBContext _context;
+        private readonly ILoggerService _logger;
 
-        public TaskDal(TasksDBContext context)
+        public TaskDal(TasksDBContext context, ILoggerService logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public List<Tasks> GetTasks()
@@ -30,9 +33,10 @@ namespace lesson1.DAL
             Projects? project =_context.Projects.Find(tasks.ProjectId);
             Users? user = _context.Users.Find(tasks.UserId);
             if (project != null && user !=null)
-            {
+            { 
                 _context.Tasks.Add(tasks);
-                _context.SaveChanges();
+                _context.SaveChanges(); 
+                _logger.Log($"Create task start:{tasks.Priority}");
                 return true;
             }
             return false;

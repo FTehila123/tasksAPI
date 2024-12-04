@@ -10,10 +10,10 @@ namespace lesson1.models
         public string? Status { get; set; }
         public int? ProjectId { get; set; }
         public int? UserId { get; set; }
-        public int? AttachId { get; set; }
+        //public int? AttachId { get; set; }
         public virtual Users? User { get; set; }
         public virtual Projects? Project { get; set; }
-        public virtual Attachments? Attachment { get; set; }
+        //public virtual Attachments? Attachment { get; set; }
 
     }
 }
